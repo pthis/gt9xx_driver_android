@@ -1310,7 +1310,7 @@ static int gtp_create_file(struct goodix_ts_data *ts)
 	return 0;
 
 exit_free_config_proc:
-	remove_proc_entry(GT91XX_CONFIG_PROC_FILE, gtp_config_proc);
+	remove_proc_entry(GT91XX_CONFIG_PROC_FILE, NULL);
 	return -ENODEV;
 }
 
@@ -2076,7 +2076,7 @@ static int gtp_drv_remove(struct i2c_client *client)
 	gtp_work_control_enable(ts, false);
 	gtp_unregister_powermanager(ts);
 
-	remove_proc_entry(GT91XX_CONFIG_PROC_FILE, gtp_config_proc);
+	remove_proc_entry(GT91XX_CONFIG_PROC_FILE, NULL);
 
 	sysfs_remove_group(&client->dev.kobj, &gtp_attr_group);
 
